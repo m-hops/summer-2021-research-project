@@ -1,21 +1,18 @@
 /*********************************************
 
-Here is a description of any special CSS used.
-In this case it's just padding and margin to 0
-and then centring the canvas (and anything else)
-using the CSS Grid.
+BASIC CSS FORMATTING
 
-Also hides overflow.
+EVERYTHING SHOULD BE CENTERED AND BACKGROUND GREEN (115,130,92)
 
 **********************************************/
 
 body {
   padding: 0;
   margin: 0;
-  display: grid; /* Set up the grid and justify/align to center */
+  display: grid;
   justify-content: center;
   align-content: center;
-  height: 100vh; /* Body is the height of the viewport */
-  overflow: hidden; /* Hide anything that goes off the window size */
-  background:rgb(15,5,46);
+  height: 100vh;
+  overflow: hidden;
+  background:rgb(115,130,92);
 }

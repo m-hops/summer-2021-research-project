@@ -1,0 +1,3 @@
+class WindowDefault extends GameObject {
+  
+}
