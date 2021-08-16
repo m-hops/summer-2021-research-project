@@ -1,0 +1,143 @@
+{
+  [{
+      "npcName": ""
+    },
+    {
+      "npcPortraitID": ""
+    },
+    {
+      "npcPatientCode": ""
+    },
+    {
+      "npcHeartCost": ""
+    },
+    {
+      "npcLungCost": ""
+    },
+    {
+      "npcLiverCost": ""
+    },
+    {
+      "npcKidneyCost": ""
+    },
+    {
+      "npcBloodCost": ""
+    },
+    {
+      "npcChartHeart": ""
+    },
+    {
+      "npcChartKidney": ""
+    },
+    {
+      "npcChartLiver": ""
+    },
+    {
+      "npcChartLung": ""
+    },
+    {
+      "npcChartBlood": ""
+    },
+    {
+      "npcChartPages": []
+    },
+    {
+      "npcOrganicsHeart": ""
+    },
+    {
+      "npcOrganicsKidney": ""
+    },
+    {
+      "npcOrganicsLiver": ""
+    },
+    {
+      "npcOrganicsLungs": ""
+    },
+    {
+      "npcOrganicsBlood": ""
+    },
+    {
+      "npcQOLAge": ""
+    },
+    {
+      "npcQOLNetWorth": ""
+    },
+    {
+      "npcQOLRelationship": ""
+    },
+    {
+      "npcQOLFamilyHistory": ""
+    },
+    {
+      "npcQOLLifestyle0": ""
+    },
+    {
+      "npcQOLLifestyle1": ""
+    },
+    {
+      "npcQOLLifestyle2": ""
+    },
+    {
+      "npcQOLLifestyle3": ""
+    },
+    {
+      "npcQOLLifestyle4": ""
+    },
+    {
+      "npcQOLLifestyle5": ""
+    },
+    {
+      "npcQOLLifestyle6": ""
+    },
+    {
+      "npcQOLLifestyle7": ""
+    },
+    {
+      "npcHCDetailAge": ""
+    },
+    {
+      "npcHCDetailsWeight": ""
+    },
+    {
+      "npcHCDetailsHeight": ""
+    },
+    {
+      "npcHCDetailsBloodType": ""
+    },
+    {
+      "npcCHBilling0": ""
+    },
+    {
+      "npcCHBilling1": ""
+    },
+    {
+      "npcCHBilling2": ""
+    },
+    {
+      "npcCHBilling3": ""
+    },
+    {
+      "npcCHBilling4": ""
+    },
+    {
+      "npcCHBilling5": ""
+    },
+    {
+      "npcCHBilling6": ""
+    },
+    {
+      "npcCHBilling7": ""
+    },
+    {
+      "npcCHBilling8": ""
+    },
+    {
+      "npcRefTXT": []
+    },
+    {
+      "npcRefIMG": []
+    },
+
+
+  }]
+}

@@ -75,6 +75,43 @@ class Scene {
 
     return null;
   }
+  getAllComponentType(compType) {
+
+    let elements = [];
+    for (let i = 0; i < this.gameObjects.active.length; i++) {
+      let go = this.gameObjects.active[i];
+      go.visitEnabledGameObjects(function(obj2){
+        let comp = obj2.components.getFirstElementOfType(compType);
+        if (comp != null) {
+          elements.push(comp);
+        }
+      });
+    }
+    return elements;
+  }
+
+  getFirstComponentOfType(compType) {
+
+    for (let i = 0; i < this.gameObjects.active.length; i++) {
+
+      let go = this.gameObjects.active[i];
+      let comp = go.components.getFirstElementOfType(compType);
+
+      if (comp != null) {
+        return comp;
+      }
+    }
+    for (let i = 0; i < this.gameObjects.toAdd.length; i++) {
+
+      let go = this.gameObjects.toAdd[i];
+      let comp = go.components.getFirstElementOfType(compType);
+
+      if (comp != null) {
+        return comp;
+      }
+    }
+    return null;
+  }
   hasFocus(focusRequest, focusGave){
     return focusRequest == focusGave || focusGave == null;
   }

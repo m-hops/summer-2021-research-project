@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
 
-    <title>RAINEBOW ENGINE V.0.1</title>
+    <title>RAINEBOW ENGINE V.0.2</title>
 
     <!-- CSS stylesheet(s) -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -14,7 +14,7 @@
     <script src="js/libraries/p5.sound.min.js"></script>
     <script src="js/libraries/p5.play-master/lib/p5.play.js"></script>
 
-    <!-- My script(s) -->
+    <!-- Engine scripts -->
     <script src="js/engine/AsyncArray.js"></script>
     <script src="js/engine/StateMachine.js"></script>
     <script src="js/engine/IState.js"></script>
@@ -27,6 +27,7 @@
 
     <script src="js/engine/action/EnableGameObjectAction.js"></script>
     <script src="js/engine/action/CallbackAction.js"></script>
+    <script src="js/engine/action/PlaySFXAction.js"></script>
 
     <script src="js/engine/components/RenderComponent.js"></script>
     <script src="js/engine/components/AttachToComponent.js"></script>
@@ -44,6 +45,10 @@
     <script src="js/engine/components/KeyboardEventComponent.js"></script>
     <script src="js/engine/components/MusicPlayerComponent.js"></script>
     <script src="js/engine/components/TimelineComponent.js"></script>
+    <script src="js/engine/components/MouseComponent.js"></script>
+    <script src="js/engine/components/DraggableComponent.js"></script>
+
+    <script src="js/engine/prefabs/ButtonPrefab.js"></script>
 
     <script src="js/engine/math/Math.js"></script>
     <script src="js/engine/math/AffineTransform.js"></script>
@@ -55,16 +60,46 @@
 
     <script src="js/engine/rendering/Renderer.js"></script>
 
-    <script src="js/game/GameState.js"></script>
-    <script src="js/game/Desktop.js"></script>
+    <!-- Game Specific scripts -->
+
+    <script src="js/game/action/ChangeSceneAction.js"></script>
+    <script src="js/game/action/OpenWindowAction.js"></script>
+    <script src="js/game/action/CloseWindowAction.js"></script>
 
     <script src="js/game/windows/WindowDefault.js"></script>
 
+    <script src="js/game/prefabs/WindowManagerPrefab.js"></script>
+
+    <script src="js/game/components/WindowCollectionComponent.js"></script>
+    <script src="js/game/components/WindowFactoryComponent.js"></script>
+
+    <script src="js/game/apps/AmmitApp.js"></script>
+    <script src="js/game/apps/ChartsApp.js"></script>
+    <script src="js/game/apps/HealthCoverageApp.js"></script>
+    <script src="js/game/apps/HelpApp.js"></script>
+    <script src="js/game/apps/MailApp.js"></script>
+    <script src="js/game/apps/OperationsApp.js"></script>
+    <script src="js/game/apps/OrganicsApp.js"></script>
+    <script src="js/game/apps/PatientCodeApp.js"></script>
+    <script src="js/game/apps/QOLApp.js"></script>
+    <script src="js/game/apps/ReferencesApp.js"></script>
+    <script src="js/game/apps/SystemFolderApp.js"></script>
+    <script src="js/game/apps/TrashApp.js"></script>
+
+    <script src="js/game/gameState/SceneState.js"></script>
+
+    <script src="js/game/scene/DesktopScene.js"></script>
+    <script src="js/game/scene/LoadingScene.js"></script>
+
+    <script src="js/game/GameState.js"></script>
+
     <script src="js/script.js"></script>
+
   </head>
 
+  <img src="assets\images\CSS-HTML Elements\bodyBKG.png" id="pgBKG">
+
   <body>
-    <!-- HTML would go here if needed. -->
   </body>
 
 </html>

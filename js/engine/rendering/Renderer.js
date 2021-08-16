@@ -22,7 +22,6 @@ class Renderer {
     for (let i = 0; i < scene.gameObjects.active.length; i++) {
 
       let go = scene.gameObjects.active[i];
-
       this.addRenderComponenets(compToRender, go);
     }
 
@@ -62,8 +61,10 @@ class Renderer {
   //PUSHES RENDERED CHILDREN COMPONENTS INTO ARRAY//
   addRenderComponenets(array, go) {
     go.visitEnabledGameObjects(function (x) {
+      //console.log("rendering go " + x.Name + "comp=");
       for (let j = 0; j < x.components.active.length; j++) {
         let comp = x.components.active[j];
+            //console.log(comp);
         if (comp instanceof RenderComponent) {
           array.push(comp);
         }

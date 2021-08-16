@@ -7,6 +7,22 @@ class IState {
 
   }
 
+  onMouseClick(sm) {
+
+  }
+
+  onMouseDoubleClick(sm) {
+
+  }
+
+  onMousePressed(sm) {
+
+  }
+
+  onMouseReleased(sm) {
+    
+  }
+
   onLeave(sm) {
     //CALLED WHEN THE STATE IS DEACTIVATED//
     //CALLED ONLY ONCE AFTER ONENTER IS CALLED//

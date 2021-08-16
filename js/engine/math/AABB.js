@@ -81,4 +81,9 @@ class AABB{
     return aabb;
   }
 
+    static MakeSize(width, height){
+      let aabb = new AABB(width/2, height/2, width/2, height/2);
+      return aabb;
+    }
+
 }

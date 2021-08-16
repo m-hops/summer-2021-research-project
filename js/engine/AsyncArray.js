@@ -45,6 +45,16 @@ class AsyncArray {
       return null;
     }
 
+    getFirstOrAddElementOfType(type){
+
+      let e = this.getFirstElementOfType(type);
+      if(e==null){
+        e = new type();
+        this.add(e);
+      }
+      return e;
+    }
+
     //RETURNS ALL ELEMENTS OF A TYPE IN ARRAY//
     getAllElementOfType(type){
       let elements = [];

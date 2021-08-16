@@ -18,8 +18,13 @@ class RectColliderComponent extends ColliderComponent {
     push();
     noFill();
     stroke(255,0,0);
-    noStroke();
+    // noStroke();
     rect(boxMin.x, boxMin.y, boxSize.x, boxSize.y);
     pop();
+  }
+
+  isPointIn(point) {
+    let trf = this.gameObject.getTransform().world;
+    return this.aabb.transformedTranslateScale(trf).isPointIn(point);
   }
 }

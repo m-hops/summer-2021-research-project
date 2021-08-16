@@ -21,6 +21,15 @@ class GameObject {
       }
     }
   }
+  visitAllGameObjects(func){
+    func(this);
+    for(let i = 0; i < this.children.active.length; ++i){
+      this.children.active[i].visitAllGameObjects(func);
+    }
+    for(let i = 0; i < this.children.toAdd.length; ++i){
+      this.children.toAdd[i].visitAllGameObjects(func);
+    }
+  }
   //CALL THIS TO UPDATE THE COMPONENET AND CHILDREN ASYNC ARRAY//
   updateAsyn() {
     this.components.update();
@@ -64,6 +73,7 @@ class GameObject {
   onEnable(){
 
   }
+
   onDesable(){
 
   }
@@ -106,6 +116,16 @@ class GameObject {
     comp.gameObject = this;
     return comp;
   }
+
+    //ADD COMPONENT TO GAME OBJECT//
+    getOrAddComponentType(compType) {
+      let e = this.components.getFirstElementOfType(compType);
+      if(e==null){
+        e = new compType();
+        this.addComponent(e);
+      }
+      return e;
+    }
 
   //REMOVE COMPONENT FROM GAME OBJECT//
   removeComponent(comp) {

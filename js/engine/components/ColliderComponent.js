@@ -7,4 +7,8 @@ class ColliderComponent extends Component {
 
   }
 
+  isPointIn(point) {
+    return false;
+  }
+
 }

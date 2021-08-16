@@ -19,6 +19,8 @@ class RenderDebugComponent extends RenderComponent {
   }
 
   render(renderer) {
+    // console.log("renderer debug");
+
     for (let j = 0; j < this.gameObject.components.active.length; j++) {
       let comp = this.gameObject.components.active[j];
       if (comp instanceof ColliderComponent) {

@@ -1,4 +1,0 @@
-class Desktop extends GameObject {
-
-  
-}
