@@ -195,15 +195,6 @@ function defaultOverlays() {
   image(scratchedGlassOverlay,0,0);
 }
 
-function cursorSwitch() {
-
-  if (gameState.currentScene = "desktop") {
-    cursor('assets/images/cursor.png');
-  } else {
-    noCursor();
-  }
-}
-
 function setup() {
 
   createCanvas(1016,716);
@@ -211,11 +202,11 @@ function setup() {
   //SET SCENE TO PROPER DESIGNATION WITH TRANSIT BELOW//
   rootStateMachine = new StateMachine();
 
-  gameState.currentScene = "loading";
+  gameState.currentScene = "desktop";
 
-  rootStateMachine.transit(new SceneState(globalRenderer, new LoadingScene()));
+  rootStateMachine.transit(new SceneState(globalRenderer, new DesktopScene()));
 
-  cursorSwitch();
+  cursor('assets/images/cursor.png');
 
 }
 

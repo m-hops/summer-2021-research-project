@@ -1,17 +1,19 @@
 class CloseWindowAction extends EventListener {
 
-  constructor(gameOBJ, windowType) {
+  constructor(gameOBJ, window) {
 
     super();
 
     this.gameOBJ = gameOBJ;
-    this.windowType = windowType;
+    this.window = window;
   }
 
   end() {
 
+    console.log('hit');
+
     let factorio = this.gameOBJ.scene.getFirstComponentOfType(WindowFactoryComponent);
 
-    factorio.destroyWindow(this.windowType);
+    factorio.destroyWindow(this.window);
   }
 }

@@ -63,13 +63,18 @@ class LoadingScene extends Scene {
     this.timelineObject2 = this.addGameObject(new GameObject);
 
     this.timelineObject2.addComponent(new Transform());
-    let imgComp = this.timelineObject2.addComponent(new AnimationComponent(loadingGlitchAnimation,2.5));
+    let imgComp = this.timelineObject2.addComponent(new AnimationComponent(loadingGlitchAnimation,1));
     imgComp.centered = true;
 
     let potTL = this.timelineObject2.addComponent(new PositionTimeline());
     potTL.addKey(0,width / 2, height / 2, 3);
     potTL.addKey(3499,width / 2, height / 2, 3);
     potTL.addKey(3500,width / 2, height / 2, -3);
+    potTL.addKey(3600,width / 2, height / 2, -3);
+    potTL.addKey(3601,width / 2, height / 2, 3);
+    potTL.addKey(3899,width / 2, height / 2, 3);
+    potTL.addKey(3900,width / 2, height / 2, -3);
+    potTL.addKey(4399,width / 2, height / 2, -3);
     potTL.addKey(4400,width / 2, height / 2, -3);
     potTL.addKey(4401,width / 2, height / 2, 3);
 

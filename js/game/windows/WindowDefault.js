@@ -1,12 +1,11 @@
 class WindowDefault extends GameObject {
 
-  constructor(dragWidth, dragHeight, windowTerminate) {
+  constructor(dragWidth, dragHeight) {
 
     super();
 
     this.dragBarWidth = dragWidth;
     this.dragBarHeight = dragHeight;
-    this.windowTerminate = windowTerminate;
 
     this.addComponent(new Transform(100,100));
 
@@ -16,7 +15,7 @@ class WindowDefault extends GameObject {
     this.draggableBar.addComponent(new RectColliderComponent(AABB.MakeSize(this.dragBarWidth, this.dragBarHeight)));
     this.draggableBar.addComponent(new DraggableComponent(this));
     this.draggableBar.addComponent(new MouseComponent());
-    this.draggableBar.addComponent(new RenderDebugComponent());
+    // this.draggableBar.addComponent(new RenderDebugComponent());
 
     this.addChild(this.draggableBar);
 
@@ -26,8 +25,8 @@ class WindowDefault extends GameObject {
 
   closeButtonOBJ() {
 
-    this.closeWindowBTN = new ButtonPrefab(AABB.MakeSize(12,12),19,5,-1, new CloseWindowAction(this,this.windowTerminate));
-    this.closeWindowBTN.mouse.onMouseClickEvent.addListener(new PlaySFXAction(errorBlipSFX));
+    this.closeWindowBTN = new ButtonPrefab(AABB.MakeSize(12,12),19,5,-1, new CloseWindowAction(this,this));
+    this.closeWindowBTN.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
 
     this.addChild(this.closeWindowBTN);
   }

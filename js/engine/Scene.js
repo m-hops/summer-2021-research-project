@@ -28,6 +28,7 @@ class Scene {
 
   //QUEUES GAME OBJECT FOR REMOVAL FROM SCENE BUT WILL NOT REMOVE UNLESS TOLD TO OR SCENE IS ENDED//
   removeGameObject(obj) {
+    console.log('hit again');
     this.gameObjects.remove(obj);
   }
 

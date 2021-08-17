@@ -103,6 +103,7 @@ class AsyncArray {
       index = this.active.findIndex(x => x === obj);
       //QUEUES UP OBJECTS TO BE REMOVED//
       if (index >= 0) {
+
         this.active[index].end();
         this.toRemove.push(obj);
       }
