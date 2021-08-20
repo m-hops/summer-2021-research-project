@@ -2,7 +2,7 @@ class OrganicsApp extends WindowDefault {
 
   constructor() {
 
-    super(organicsSelectionStatic.width, 24);
+    super(organicsSelectionStatic.width, 24, organicsSelectionStatic);
 
     this.windowBackgroundStatic();
   }

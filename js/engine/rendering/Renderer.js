@@ -58,6 +58,29 @@ class Renderer {
     pop();
   }
 
+  static sortGameObjectArray(objs) {
+    objs.sort(function(a, b){
+      let trfA = a.getTransform();
+      let trfB = b.getTransform();
+      if(trfA == null && trfB == null) return 0;
+      if(trfA == null ) return 100;
+      if(trfB == null ) return -100;
+      return trfB.world.position.z - trfA.world.position.z
+    });
+
+  }
+    static sortGameObjectArrayLocal(objs) {
+      objs.sort(function(a, b){
+        let trfA = a.getTransform();
+        let trfB = b.getTransform();
+        if(trfA == null && trfB == null) return 0;
+        if(trfA == null ) return 100;
+        if(trfB == null ) return -100;
+        return trfB.local.position.z - trfA.local.position.z
+      });
+
+    }
+
   //PUSHES RENDERED CHILDREN COMPONENTS INTO ARRAY//
   addRenderComponenets(array, go) {
     go.visitEnabledGameObjects(function (x) {

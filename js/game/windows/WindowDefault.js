@@ -1,13 +1,17 @@
 class WindowDefault extends GameObject {
 
-  constructor(dragWidth, dragHeight) {
+  constructor(dragWidth, dragHeight, imgsrc) {
 
     super();
 
     this.dragBarWidth = dragWidth;
     this.dragBarHeight = dragHeight;
+    this.imgsrc = imgsrc;
 
     this.addComponent(new Transform(100,100));
+    this.addComponent(new RectColliderComponent(AABB.MakeSize(this.imgsrc.width, this.imgsrc.height)));
+    // this.addComponent(new RenderDebugComponent());
+    this.addComponent(new WindowInputReceiverComponent());
 
     this.draggableBar = new GameObject("draggableBar");
 

@@ -8,6 +8,8 @@ class LoadingScene extends Scene {
     this.staticBackgroundOBJ();
     this.bootAnimation();
     this.bootAnimation2();
+    this.borderOBJ();
+    this.musicOBJ();
 
   }
 
@@ -52,7 +54,7 @@ class LoadingScene extends Scene {
     this.timelineObject1 = this.addGameObject(new GameObject());
     let mainActionTL = this.timelineObject1.addComponent(new EventTimeline());
     mainActionTL.addAction(0, new StartGOTimelinesAction(this.timelineObject0, new ChangeSceneAction("desktop")));
-    mainActionTL.addAction(2200, new PlaySFXAction(openingChimeAudioNew));
+    mainActionTL.addAction(2200, new PlaySFXAction(openingChimeAudioNew, 0.6));
     mainActionTL.addAction(6000, new ChangeSceneAction("desktop"));
     mainActionTL.startTimeline();
   }
@@ -83,6 +85,31 @@ class LoadingScene extends Scene {
     mainActionTL.addAction(0, new StartGOTimelinesAction(this.timelineObject2));
     mainActionTL.startTimeline();
 
+  }
+
+  borderOBJ() {
+
+    //FLAT DESKTOP BACKGROUND//
+
+    this.staticBorder = new GameObject();
+
+    this.staticBorder.addComponent(new Transform(0,0));
+    this.staticBorder.addComponent(new ImageComponent(edgesOverlay));
+
+    this.staticBorder.getTransform().local.position.z = -100;
+
+    this.addGameObject(this.staticBorder);
+
+  }
+
+  musicOBJ() {
+
+    this.music = new GameObject();
+
+    this.music.addComponent(new MusicPlayerComponent(droneAudio,0.25));
+    this.music.addComponent(new MusicPlayerComponent(diskDriveAmbientAudio,1));
+
+    this.addGameObject(this.music);
   }
 
 }

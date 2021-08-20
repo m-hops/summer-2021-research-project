@@ -2,7 +2,7 @@ class AmmitApp extends WindowDefault {
 
   constructor() {
 
-    super(ammitTemplateStatic.width, 24);
+    super(ammitTemplateStatic.width, 24, ammitTemplateStatic);
 
     this.windowBackgroundStatic();
     this.ammitButtonLeftOBJ();

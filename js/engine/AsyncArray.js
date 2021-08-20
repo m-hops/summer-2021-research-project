@@ -21,6 +21,19 @@ class AsyncArray {
       }
     }
 
+    visitElementsOfType(type, func){
+      for (let h = 0; h < this.active.length; h++) {
+        if(this.active[h] instanceof type) {
+          if(!func(this.active[h])) return;
+        }
+      }
+      for (let h = 0; h < this.toAdd.length; h++) {
+        if(this.toAdd[h] instanceof type) {
+          if(!func(this.toAdd[h])) return;
+        }
+      }
+    }
+
     //CHECKS FOR THE FIRST ACTIVE ELEMENT IN AN ARRAY//
     getFirstActiveElementOfType(type){
 

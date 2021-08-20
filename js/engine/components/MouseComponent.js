@@ -10,6 +10,19 @@ class MouseComponent extends Component {
     this.isPressed = false;
   }
 
+  hitCollider(mousePosition) {
+    let allColliders = this.gameObject.components.getAllElementOfType(ColliderComponent);
+    if (allColliders == 0) {
+      return true;
+    }
+    for (let i = 0; i < allColliders.length; i++) {
+      if (allColliders[i].isPointIn(mousePosition)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   onMouseClick() {
 
     if (this.gameObject == null) {
@@ -17,16 +30,10 @@ class MouseComponent extends Component {
     }
 
 
-    let allColliders = this.gameObject.components.getAllElementOfType(ColliderComponent);
-
     let mousePosition = new p5.Vector(mouseX, mouseY);
-
-    for (let i = 0; i < allColliders.length; i++) {
-      if (allColliders[i].isPointIn(mousePosition)) {
-
-          this.onMouseClickEvent.raise();
-          return;
-      }
+    if (this.hitCollider(mousePosition)) {
+      this.onMouseClickEvent.raise();
+      return;
     }
   }
 
@@ -36,18 +43,14 @@ class MouseComponent extends Component {
       return;
     }
 
-    let allColliders = this.gameObject.components.getAllElementOfType(ColliderComponent);
-
     let mousePosition = new p5.Vector(mouseX, mouseY);
 
-    for (let i = 0; i < allColliders.length; i++) {
-      if (allColliders[i].isPointIn(mousePosition)) {
+    if (this.hitCollider(mousePosition)) {
 
-        this.isPressed = true;
+      this.isPressed = true;
 
-          this.onMousePressedEvent.raise();
-          return;
-      }
+      this.onMousePressedEvent.raise();
+      return;
     }
   }
 

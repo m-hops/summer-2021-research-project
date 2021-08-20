@@ -2,7 +2,7 @@ class HelpApp extends WindowDefault{
 
   constructor() {
 
-    super(helpWindow[0].width, 24);
+    super(helpWindow[0].width, 24, helpWindow[0]);
 
     this.windowBackgroundStatic();
     this.helpAppButtonLeftOBJ();

@@ -16,3 +16,22 @@ class CallbackAction extends EventListener {
   }
 
 }
+class CallbackAction2 extends EventListener {
+
+  constructor(onBeginThis, onBegin, onEnd) {
+
+    super();
+    this.onBeginThis = onBeginThis;
+    this.onBegin = onBegin;
+    this.onEnd = onEnd;
+  }
+
+  begin(event){
+    if(this.onBegin != null) this.onBegin.apply(this.onBeginThis, event);
+  }
+
+  end(event){
+    if(this.onEnd != null) this.onEnd(event);
+  }
+
+}

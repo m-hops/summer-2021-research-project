@@ -40,4 +40,5 @@ class WindowFactoryComponent extends Component {
     this.gameObject.scene.removeGameObject(selectedWindow);
 
   }
+
 }

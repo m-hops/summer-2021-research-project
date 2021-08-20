@@ -2,7 +2,7 @@ class OperationsApp extends WindowDefault {
 
   constructor() {
 
-    super(operationsStatic.width, 24);
+    super(operationsStatic.width, 24, operationsStatic);
 
     this.windowBackgroundStatic();
   }

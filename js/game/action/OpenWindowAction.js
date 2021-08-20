@@ -4,7 +4,7 @@ class OpenWindowAction extends EventListener {
 
     super();
 
-    this.gameOBJ = gameOBJ; 
+    this.gameOBJ = gameOBJ;
     this.windowType = windowType;
   }
 
@@ -12,6 +12,9 @@ class OpenWindowAction extends EventListener {
 
     let factorio = this.gameOBJ.scene.getFirstComponentOfType(WindowFactoryComponent);
 
-    factorio.getOrCreateWindow(this.windowType);
+    let window = factorio.getOrCreateWindow(this.windowType);
+    let focuser = this.gameOBJ.scene.getFirstComponentOfType(WindowFocusComponent);
+
+    focuser.setFocus(window);
   }
 }

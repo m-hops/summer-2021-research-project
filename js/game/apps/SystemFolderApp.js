@@ -2,7 +2,7 @@ class SystemFolderApp extends WindowDefault{
 
   constructor() {
 
-    super(systemFolderBKG.width, 24);
+    super(systemFolderBKG.width, 24, systemFolderBKG);
 
     this.windowBackgroundStatic();
     this.ammitButtonOBJ();

@@ -27,4 +27,8 @@ class RectColliderComponent extends ColliderComponent {
     let trf = this.gameObject.getTransform().world;
     return this.aabb.transformedTranslateScale(trf).isPointIn(point);
   }
+
+  isPointInLocal(point) {
+    return this.aabb.isPointIn(point);
+  }
 }

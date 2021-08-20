@@ -8,6 +8,7 @@ class DesktopScene extends Scene {
     this.sceneBTNs();
     this.staticOverlayOBJ();
     this.setupWindowEnviroment();
+    this.musicOBJ();
 
   }
 
@@ -26,7 +27,7 @@ class DesktopScene extends Scene {
 
     this.staticBackground = new GameObject();
     this.staticBackground.Name = "staticBackground";
-    this.staticBackground.addComponent(new Transform(0,0));
+    this.staticBackground.addComponent(new Transform(0,0,100000));
     this.staticBackground.addComponent(new ImageComponent(staticOSBKG));
 
     this.addGameObject(this.staticBackground);
@@ -38,7 +39,7 @@ class DesktopScene extends Scene {
 
     this.staticOverlay = new GameObject();
     this.staticOverlay.addComponent(new Transform(0,0));
-    this.staticOverlay.addComponent(new ImageComponent(canvasBorderOverlay));
+    this.staticOverlay.addComponent(new ImageComponent(edgesOverlay));
 
     this.addGameObject(this.staticOverlay);
 
@@ -93,5 +94,14 @@ class DesktopScene extends Scene {
     this.windowManager = new WindowManagerPrefab();
 
     this.addGameObject(this.windowManager)
+  }
+
+  musicOBJ() {
+
+    this.music = new GameObject();
+
+    this.music.addComponent(new MusicPlayerComponent(droneAudio,0.1));
+
+    this.addGameObject(this.music);
   }
 }

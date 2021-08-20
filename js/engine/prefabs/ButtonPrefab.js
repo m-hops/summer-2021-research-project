@@ -14,7 +14,7 @@ class ButtonPrefab extends GameObject {
     this.addComponent(this.mouse);
     this.addComponent(this.rectCollider);
     this.addComponent(this.transform);
-    this.addComponent(new RenderDebugComponent());
+    // this.addComponent(new RenderDebugComponent());
 
   }
 

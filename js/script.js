@@ -11,6 +11,7 @@ let scratchedGlassOverlay;
 let staticLoadingBlankBKG;
 let staticLoadingBKG;
 
+let edgesOverlay;
 let canvasBorderOverlay;
 let staticOSBKG;
 let logOffFalse;
@@ -30,6 +31,7 @@ let submitDark;
 let submitLight;
 let xFalse;
 let xTrue;
+let mouseOverlay;
 
 let chartsLogOnStatic;
 let chartsFinishedStatic;
@@ -72,6 +74,8 @@ let openingChimeDegradedAudio;
 let openingChimeAudioNew;
 let selectionBlipSFX;
 let errorBlipSFX;
+let droneAudio;
+let diskDriveAmbientAudio;
 
 //FONT GLOBAL VARIABLES//
 let defaultFont;
@@ -91,6 +95,7 @@ function preload() {
   staticLoadingBlankBKG = loadImage('assets/images/loadingScreen/loadingScreenBlank.png');
   staticLoadingBKG = loadImage('assets/images/loadingScreen/loadingScreenWithLogo.png');
 
+  edgesOverlay = loadImage('assets/images/edges.png');
   canvasBorderOverlay = loadImage('assets/images/border.png');
   staticOSBKG = loadImage('assets/images/desktop/desktopStatic.png');
   logOffFalse = loadImage('assets/images/desktop/logOffOff.png');
@@ -110,6 +115,7 @@ function preload() {
   submitLight = loadImage('assets/images/buttons/submitLight.png');
   xFalse = loadImage('assets/images/buttons/xFalse.png');
   xTrue = loadImage('assets/images/buttons/xTrue.png');
+  mouseOverlay = loadImage('assets/images/cursor.png');
 
   chartsLogOnStatic = loadImage('assets/images/charts/chartsLogOn.png');
   chartsFinishedStatic = loadImage('assets/images/charts/chartsFinished.png');
@@ -154,6 +160,8 @@ function preload() {
   openingChimeAudioNew = loadSound('assets/sounds/openingChimeNew.mp3');
   selectionBlipSFX = loadSound('assets/sounds/selectionBlip.mp3');
   errorBlipSFX = loadSound('assets/sounds/errorBlip.mp3');
+  droneAudio = loadSound('assets/sounds/backgroundDrone.mp3');
+  diskDriveAmbientAudio = loadSound('assets/sounds/diskDriveAmbient.mp3');
 
   //ANIMATION PRELOADS//
   loadingGlitchAnimation = loadAnimation('assets/images/loadingScreen/loadingScreenAnimation/loadingScreenAnimation0.png', 'assets/images/loadingScreen/loadingScreenAnimation/loadingScreenAnimation4.png');
@@ -192,7 +200,11 @@ function mouseReleased() {
 
 function defaultOverlays() {
 
+  image(mouseOverlay,mouseX,mouseY);
+
   image(scratchedGlassOverlay,0,0);
+
+  image(edgesOverlay,0,0);
 }
 
 function setup() {
@@ -202,11 +214,11 @@ function setup() {
   //SET SCENE TO PROPER DESIGNATION WITH TRANSIT BELOW//
   rootStateMachine = new StateMachine();
 
-  gameState.currentScene = "desktop";
+  gameState.currentScene = "loading";
 
-  rootStateMachine.transit(new SceneState(globalRenderer, new DesktopScene()));
+  rootStateMachine.transit(new SceneState(globalRenderer, new LoadingScene()));
 
-  cursor('assets/images/cursor.png');
+  noCursor();
 
 }
 
