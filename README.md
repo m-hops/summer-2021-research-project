@@ -3,6 +3,9 @@
 *THIS GUIDE IS DESIGNED BASED ON THE RESEARCH PAPER ON GENERATIVE LOGICS AND CONCEPTUAL CLICKS BY RILLA KHALED AND PIPPIN BARR*
 
 * [PROCESS JOURNAL](https://github.com/m-hops/summer-2021-research-project/wiki/PROCESS-JOURNAL)
-* [PROJECT PARAMETERS](https://github.com/m-hops/summer-2021-research-project/wiki/PROJECT-PARAMETERS)
-* [TO-DO LIST](https://github.com/m-hops/summer-2021-research-project/wiki/TO-DO)
-* [ASSORTED NOTES](https://github.com/m-hops/summer-2021-research-project/wiki/ASSORTED-NOTES)
+
+*THE RAINEBOW ENGINE IS BUILT BY STEPHANIE RANCOURT AND MADELINE ZAYTSOFF USING RESOURCES FROM THE FOLLOWING:*
+
+- P5.JS LIBRARY (https://p5js.org/)
+- P5.JS PLAY LIBRARY (https://molleindustria.github.io/p5.play/)
+- P5.BITMAP FONT PLUGIN (https://github.com/asalga/p5.bitmapFont)

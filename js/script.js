@@ -78,7 +78,7 @@ let droneAudio;
 let diskDriveAmbientAudio;
 
 //FONT GLOBAL VARIABLES//
-let defaultFont;
+let customFont;
 
 //ASSORTED GLOBAL VARIABLES//
 let canvasColour = {
@@ -167,7 +167,7 @@ function preload() {
   loadingGlitchAnimation = loadAnimation('assets/images/loadingScreen/loadingScreenAnimation/loadingScreenAnimation0.png', 'assets/images/loadingScreen/loadingScreenAnimation/loadingScreenAnimation4.png');
 
   //FONT PRELOADS//
-  defaultFont = loadFont('assets/fonts/bit5x3.ttf');
+  customFont = loadFont('assets/fonts/CharOSCustomFont.otf');
 }
 
 //ACTIVATES MOUSE CLICK THROUGHT ENGINE AND ISTATE//
