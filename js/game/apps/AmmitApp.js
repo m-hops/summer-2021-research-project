@@ -7,6 +7,7 @@ class AmmitApp extends WindowDefault {
     this.windowBackgroundStatic();
     this.ammitButtonLeftOBJ();
     this.ammitButtonRightOBJ();
+    this.name = "AmmitApp"
   }
 
   windowBackgroundStatic() {
@@ -21,7 +22,7 @@ class AmmitApp extends WindowDefault {
 
   ammitButtonLeftOBJ() {
 
-    this.ammitButtonLeft = new ButtonPrefab(AABB.MakeSize(arrowLeftDark.width,arrowLeftDark.height),100,505,-1);
+    this.ammitButtonLeft = new ButtonCustom0Prefab(AABB.MakeSize(arrowLeftDark.width,arrowLeftDark.height),100,505,-1);
     this.ammitButtonLeft.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
 
     this.addChild(this.ammitButtonLeft);
@@ -37,7 +38,7 @@ class AmmitApp extends WindowDefault {
 
   ammitButtonRightOBJ() {
 
-    this.ammitButtonRight = new ButtonPrefab(AABB.MakeSize(arrowRightDark.width,arrowRightDark.height),404,505,-1);
+    this.ammitButtonRight = new ButtonCustom0Prefab(AABB.MakeSize(arrowRightDark.width,arrowRightDark.height),404,505,-1);
     this.ammitButtonRight.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
 
     this.addChild(this.ammitButtonRight);

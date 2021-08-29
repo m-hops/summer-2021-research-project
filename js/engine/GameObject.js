@@ -15,20 +15,34 @@ class GameObject {
   }
   visitEnabledGameObjects(func){
     if(this.enabledInHierarchy){
-      func(this);
+      if(!func(this)) return false;
       for(let i = 0; i < this.children.active.length; ++i){
-        this.children.active[i].visitEnabledGameObjects(func);
+        if(!this.children.active[i].visitEnabledGameObjects(func)) return false;
       }
     }
+    return true;
   }
   visitAllGameObjects(func){
-    func(this);
+    if(!func(this)) return false;
     for(let i = 0; i < this.children.active.length; ++i){
-      this.children.active[i].visitAllGameObjects(func);
+      if(!this.children.active[i].visitAllGameObjects(func)) return false;
     }
     for(let i = 0; i < this.children.toAdd.length; ++i){
-      this.children.toAdd[i].visitAllGameObjects(func);
+      if(!this.children.toAdd[i].visitAllGameObjects(func)) return false;
     }
+    return true;
+  }
+
+  visitAllChildComponentOfType(type,func) {
+    return this.children.visit(function(go) {
+      let comp = go.getComponentOfType(type);
+      if (comp != null) {
+        if (!func(comp)) {
+          return false;
+        }
+      }
+      return true;
+    });
   }
   //CALL THIS TO UPDATE THE COMPONENET AND CHILDREN ASYNC ARRAY//
   updateAsyn() {
@@ -56,16 +70,16 @@ class GameObject {
   enableHierarchy(){
     if(this.enabled){
       this.enabledInHierarchy = true;
-      this.components.visit(x => x.onDisable());
-      this.children.visit(x => x.enableHierarchy());
+      this.components.visit(function(x) {x.onDisable(); return true;});
+      this.children.visit(function(x) {x.enableHierarchy(); return true;});
       this.onEnable();
     }
   }
   disableHierarchy(){
     if(this.enabled){
       this.enabledInHierarchy = false;
-      this.components.visit(x => x.onDisable());
-      this.children.visit(x => x.disableHierarchy());
+      this.components.visit(function(x) { x.onDisable(); return true;});
+      this.children.visit(function(x) { x.disableHierarchy(); return true;});
       this.onDesable();
     }
   }
@@ -117,16 +131,20 @@ class GameObject {
     return comp;
   }
 
-    //ADD COMPONENT TO GAME OBJECT//
-    getOrAddComponentType(compType) {
-      let e = this.components.getFirstElementOfType(compType);
-      if(e==null){
-        e = new compType();
-        this.addComponent(e);
-      }
-      return e;
+  //ADD COMPONENT TO GAME OBJECT//
+  getOrAddComponentType(compType) {
+    let e = this.components.getFirstElementOfType(compType);
+    if(e==null){
+      e = new compType();
+      this.addComponent(e);
     }
+    return e;
+  }
 
+  //ADD COMPONENT TO GAME OBJECT//
+  getComponentOfType(compType) {
+    return this.components.getFirstElementOfType(compType);
+  }
   //REMOVE COMPONENT FROM GAME OBJECT//
   removeComponent(comp) {
     this.components.remove(comp);

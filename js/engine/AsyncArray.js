@@ -9,29 +9,32 @@ class AsyncArray {
     }
     visit(func){
       for (let h = 0; h < this.active.length; h++) {
-        func(this.active[h]);
+        if (!func(this.active[h])) return false;
       }
       for (let h = 0; h < this.toAdd.length; h++) {
-        func(this.toAdd[h]);
+        if (!func(this.toAdd[h])) return false;
       }
+      return true;
     }
     visitActive(func){
       for (let h = 0; h < this.active.length; h++) {
-        func(this.active[h]);
+        if (!func(this.active[h])) return false;
       }
+      return true;
     }
 
     visitElementsOfType(type, func){
       for (let h = 0; h < this.active.length; h++) {
         if(this.active[h] instanceof type) {
-          if(!func(this.active[h])) return;
+          if(!func(this.active[h])) return false;
         }
       }
       for (let h = 0; h < this.toAdd.length; h++) {
         if(this.toAdd[h] instanceof type) {
-          if(!func(this.toAdd[h])) return;
+          if(!func(this.toAdd[h])) return false;
         }
       }
+      return true;
     }
 
     //CHECKS FOR THE FIRST ACTIVE ELEMENT IN AN ARRAY//

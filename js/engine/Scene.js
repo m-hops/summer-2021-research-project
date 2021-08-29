@@ -86,6 +86,7 @@ class Scene {
         if (comp != null) {
           elements.push(comp);
         }
+        return true;
       });
     }
     return elements;

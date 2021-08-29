@@ -97,6 +97,8 @@ class PhysicsSolver {
             physicComp.push(comp);
           }
         }
+
+        return true;
       });
     }
 

@@ -22,7 +22,7 @@ class HelpApp extends WindowDefault{
 
   helpAppButtonLeftOBJ() {
 
-    this.helpAppButtonLeft = new ButtonPrefab(AABB.MakeSize(arrowLeftLight.width,arrowLeftLight.height),75,100,-1);
+    this.helpAppButtonLeft = new ButtonCustom0Prefab(AABB.MakeSize(arrowLeftLight.width,arrowLeftLight.height),75,100,-1);
     this.helpAppButtonLeft.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
 
     this.addChild(this.helpAppButtonLeft);
@@ -38,7 +38,7 @@ class HelpApp extends WindowDefault{
 
   helpAppButtonRightOBJ() {
 
-    this.helpAppButtonRight = new ButtonPrefab(AABB.MakeSize(arrowRightLight.width,arrowRightLight.height),665,100,-1);
+    this.helpAppButtonRight = new ButtonCustom0Prefab(AABB.MakeSize(arrowRightLight.width,arrowRightLight.height),665,100,-1);
     this.helpAppButtonRight.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
 
     this.addChild(this.helpAppButtonRight);

@@ -15,6 +15,6 @@ class OpenWindowAction extends EventListener {
     let window = factorio.getOrCreateWindow(this.windowType);
     let focuser = this.gameOBJ.scene.getFirstComponentOfType(WindowFocusComponent);
 
-    focuser.setFocus(window);
+    focuser.setFocusNextFrame(window);
   }
 }

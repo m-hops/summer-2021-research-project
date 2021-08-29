@@ -24,7 +24,7 @@ class DraggableComponent extends Component {
   update() {
 
     if (this.mouseComp == null) {
-      this.mouseComp = this.gameObject.getOrAddComponentType(MouseComponent);
+      this.mouseComp = this.gameObject.getOrAddComponentType(WindowInputReceiverComponent);
     }
 
     if (this.mouseComp.isPressed) {
