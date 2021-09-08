@@ -4,11 +4,14 @@ class DesktopScene extends Scene {
     super();
 
     this.cameraOBJ();
-    this.staticBackgroundOBJ();
-    this.sceneBTNs();
+    // this.staticBackgroundOBJ();
+    // this.sceneBTNs();
     this.staticOverlayOBJ();
     this.setupWindowEnviroment();
     this.musicOBJ();
+    // this.exitDropDownOBJ();
+
+    // this.logOffActive = false;
 
   }
 
@@ -27,7 +30,7 @@ class DesktopScene extends Scene {
 
     this.staticBackground = new GameObject();
     this.staticBackground.Name = "staticBackground";
-    this.staticBackground.addComponent(new Transform(0,0,100000));
+    this.staticBackground.addComponent(new Transform(-1,-1,100000));
     this.staticBackground.addComponent(new ImageComponent(staticOSBKG));
 
     this.addGameObject(this.staticBackground);
@@ -66,7 +69,7 @@ class DesktopScene extends Scene {
 
     this.trashFolderBTN = new ButtonPrefab(AABB.MakeSize(44,57),927,625,-1);
     this.trashFolderBTN.Name = "trashFolderBTN";
-    this.trashFolderBTN.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
+    this.trashFolderBTN.mouse.onMouseClickEvent.addListener(new PlaySFXAction(errorBlipSFX));
 
     this.addGameObject(this.trashFolderBTN);
   }
@@ -82,9 +85,9 @@ class DesktopScene extends Scene {
 
   setupLogOffFolderBTN() {
 
-    this.logOffBTN = new ButtonPrefab(AABB.MakeSize(24,20),27,10,-1, new ChangeSceneAction('loading'));
-    this.logOffBTN.Name = "logOffBTN";
+    this.logOffBTN = new ButtonPrefab(AABB.MakeSize(24,20),27,10,-10);
     this.logOffBTN.mouse.onMouseClickEvent.addListener(new PlaySFXAction(selectionBlipSFX));
+    this.logOffBTN.mouse.onMouseClickEvent.addListener(new CallbackAction2(this, this.logOffSwitch));
 
     this.addGameObject(this.logOffBTN);
   }
@@ -93,7 +96,12 @@ class DesktopScene extends Scene {
 
     this.windowManager = new WindowManagerPrefab();
 
-    this.addGameObject(this.windowManager)
+    this.addGameObject(this.windowManager);
+
+    let factorio = this.windowManager.getComponentOfType(WindowFactoryComponent);
+    let desktop = factorio.getOrCreateWindow(WindowDesktop);
+    let focuser = this.windowManager.getComponentOfType(WindowFocusComponent);
+    focuser.desktop = desktop;
   }
 
   musicOBJ() {
@@ -104,4 +112,17 @@ class DesktopScene extends Scene {
 
     this.addGameObject(this.music);
   }
+
+  exitDropDownOBJ() {
+
+    this.exitWindowFalse = new GameObject();
+
+    this.exitWindowFalse.addComponent(new ImageComponent(logOffFalse));
+    this.exitWindowFalse.addComponent(new Transform(20,30));
+
+    this.addGameObject(this.exitWindowFalse);
+    this.exitWindowFalse.disable();
+  }
+
+
 }

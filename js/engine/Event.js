@@ -11,17 +11,17 @@ class Event {
   }
 
   //IF LISTENER FOUND, START//
-  begin() {
+  begin(param) {
 
     for (let i = 0; i < this.listeners.length; i++) {
-      this.listeners[i].begin(this);
+      this.listeners[i].begin(this, param);
     }
   }
   //IF LISTENER FOUND, END//
-  end() {
+  end(param) {
 
     for (let i = 0; i < this.listeners.length; i++) {
-      this.listeners[i].end(this);
+      this.listeners[i].end(this, param);
     }
   }
 
@@ -32,16 +32,16 @@ class Event {
 
   //REMOVE LISTENER TO GAME OBJECT//
   removeListener(listener) {
-    let index = this.listners.findIndex(x => x === listener);
+    let index = this.listeners.findIndex(x => x === listener);
     if (index >= 0) {
       this.listeners.splice(index,1);
       return;
     }
   }
 
-  raise() {
+  raise(param) {
     for (let i = 0; i < this.listeners.length; i++) {
-      this.listeners[i].raise(this);
+      this.listeners[i].raise(this,param);
     }
   }
 

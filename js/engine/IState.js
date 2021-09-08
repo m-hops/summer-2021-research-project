@@ -7,6 +7,12 @@ class IState {
 
   }
 
+  onKeyPress(sm, keyCode) {
+
+  }
+  onKeyType(sm, key) {
+
+  }
   onMouseClick(sm) {
 
   }
@@ -20,7 +26,7 @@ class IState {
   }
 
   onMouseReleased(sm) {
-    
+
   }
 
   onLeave(sm) {

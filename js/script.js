@@ -4,6 +4,7 @@
 let rootStateMachine;
 let globalRenderer = new Renderer();
 let gameState = new GameState();
+let inventory = new Inventory();
 
 //IMAGE GLOBAL VARIABLES//
 let scratchedGlassOverlay;
@@ -59,11 +60,12 @@ let qolConfirmStatic;
 let qolFinishedStatic;
 
 let ammitTemplateStatic;
-let ammitFinishedStatic;
 let ammitAbandonedOverlay;
 let ammitSavedOverlay;
 
 let helpWindow = [];
+
+let npcPortrait = [];
 
 //ANIMATION GLOBAL VARIABLES//
 let loadingGlitchAnimation;
@@ -76,9 +78,16 @@ let selectionBlipSFX;
 let errorBlipSFX;
 let droneAudio;
 let diskDriveAmbientAudio;
+let recycleConfirmSFX;
+let closeBlipSFX;
+let savedToneSFX;
 
 //FONT GLOBAL VARIABLES//
-let customFont;
+let customFontPNGLight;
+let customFontPNGDark;
+let customFontPNGLargeLight;
+let customFontPNGLargeDark;
+let customFontPNGExtraLargeDark;
 
 //ASSORTED GLOBAL VARIABLES//
 let canvasColour = {
@@ -143,7 +152,6 @@ function preload() {
   qolFinishedStatic = loadImage('assets/images/qol/qolFinished.png');
 
   ammitTemplateStatic = loadImage('assets/images/ammit/ammitTemplate.png');
-  ammitFinishedStatic = loadImage('assets/images/ammit/ammitFinishedStatic.png');
   ammitAbandonedOverlay = loadImage('assets/images/ammit/ammitAbandonedOverlay.png');
   ammitSavedOverlay = loadImage('assets/images/ammit/ammitSavedOverlay.png');
 
@@ -154,6 +162,15 @@ function preload() {
   helpWindow[4] = loadImage('assets/images/helpWindow/helpWindow4.png');
   helpWindow[5] = loadImage('assets/images/helpWindow/helpWindow5.png');
 
+  npcPortrait[0] = loadImage('assets/images/npcImages/NPCPortraitAClerk.png');
+  npcPortrait[1] = loadImage('assets/images/npcImages/NPCPortraitZGagnier.png');
+  npcPortrait[2] = loadImage('assets/images/npcImages/NPCPortraitDWalton.png');
+  npcPortrait[3] = loadImage('assets/images/npcImages/NPCPortraitAMcKay.png');
+  npcPortrait[4] = loadImage('assets/images/npcImages/NPCPortraitNLeroy.png');
+  npcPortrait[5] = loadImage('assets/images/npcImages/NPCPortraitERyley.png');
+  npcPortrait[6] = loadImage('assets/images/npcImages/NPCPortraitEWinfield.png');
+  npcPortrait[7] = loadImage('assets/images/npcImages/NPCPortraitPBell.png');
+
   //AUDIO PRELOADS//
   openingChimeAudio = loadSound('assets/sounds/openingChime.mp3');
   openingChimeDegradedAudio = loadSound('assets/sounds/openingChimeDegraded.mp3');
@@ -162,12 +179,54 @@ function preload() {
   errorBlipSFX = loadSound('assets/sounds/errorBlip.mp3');
   droneAudio = loadSound('assets/sounds/backgroundDrone.mp3');
   diskDriveAmbientAudio = loadSound('assets/sounds/diskDriveAmbient.mp3');
+  recycleConfirmSFX = loadSound('assets/sounds/recycleTone.mp3');
+  closeBlipSFX = loadSound('assets/sounds/closeBlip.mp3');
+  savedToneSFX = loadSound('assets/sounds/savedTone.mp3');
 
   //ANIMATION PRELOADS//
   loadingGlitchAnimation = loadAnimation('assets/images/loadingScreen/loadingScreenAnimation/loadingScreenAnimation0.png', 'assets/images/loadingScreen/loadingScreenAnimation/loadingScreenAnimation4.png');
 
   //FONT PRELOADS//
-  customFont = loadFont('assets/fonts/CharOSCustomFont.otf');
+  customFontPNGLight = loadBitmapFont('assets/fonts/fontLight.png', {
+    glyphWidth: 5 * 2,
+    glyphHeight: 7 * 2,
+    glyphBorder: 0,
+    rows: 12,
+    cols: 8,
+    charSpacing: 0
+  });
+  customFontPNGDark = loadBitmapFont('assets/fonts/fontDark.png', {
+    glyphWidth: 5 * 2,
+    glyphHeight: 7 * 2,
+    glyphBorder: 0,
+    rows: 12,
+    cols: 8,
+    charSpacing: 0
+  });
+  customFontPNGLargeLight = loadBitmapFont('assets/fonts/fontLightLarge.png', {
+    glyphWidth: 10 * 2,
+    glyphHeight: 14 * 2,
+    glyphBorder: 0,
+    rows: 12,
+    cols: 8,
+    charSpacing: 0
+  });
+  customFontPNGLargeDark = loadBitmapFont('assets/fonts/fontDarkLarge.png', {
+    glyphWidth: 10 * 2,
+    glyphHeight: 14 * 2,
+    glyphBorder: 0,
+    rows: 12,
+    cols: 8,
+    charSpacing: 0
+  });
+  customFontPNGExtraLargeDark = loadBitmapFont('assets/fonts/fontDarkExtraLarge.png', {
+    glyphWidth: 15 * 2,
+    glyphHeight: 21 * 2,
+    glyphBorder: 0,
+    rows: 12,
+    cols: 8,
+    charSpacing: 0
+  });
 }
 
 //ACTIVATES MOUSE CLICK THROUGHT ENGINE AND ISTATE//
@@ -198,9 +257,27 @@ function mouseReleased() {
   }
 }
 
+function keyPressed() {
+
+    if (rootStateMachine.currentState != null) {
+
+        rootStateMachine.currentState.onKeyPress(rootStateMachine, keyCode);
+
+    }
+}
+
+function keyTyped() {
+
+    if (rootStateMachine.currentState != null) {
+
+        rootStateMachine.currentState.onKeyType(rootStateMachine, key);
+
+    }
+}
+
 function defaultOverlays() {
 
-  image(mouseOverlay,mouseX,mouseY);
+  image(mouseOverlay,mouseX - 1,mouseY - 1);
 
   image(scratchedGlassOverlay,0,0);
 
@@ -214,9 +291,9 @@ function setup() {
   //SET SCENE TO PROPER DESIGNATION WITH TRANSIT BELOW//
   rootStateMachine = new StateMachine();
 
-  gameState.currentScene = "loading";
+  gameState.currentScene = "desktop";
 
-  rootStateMachine.transit(new SceneState(globalRenderer, new LoadingScene()));
+  rootStateMachine.transit(new SceneState(globalRenderer, new DesktopScene()));
 
   noCursor();
 

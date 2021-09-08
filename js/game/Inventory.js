@@ -10,6 +10,7 @@ class Inventory {
     this.qol = 78.5;
     this.bank = 0;
 
+    this.onInventoryChange = new Event();
   }
 
 }

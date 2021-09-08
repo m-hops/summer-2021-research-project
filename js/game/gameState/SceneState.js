@@ -62,4 +62,21 @@ class SceneState extends IState {
     }
   }
 
+  onKeyPress(sm, keyCode) {
+
+      let keyboardComponents = this.sceneToRun.getAllComponentType(KeyboardComponent);
+
+      for (let i = 0; i < keyboardComponents.length; i++) {
+        keyboardComponents[i].onKeyPress(keyCode);
+      }
+  }
+
+  onKeyType(sm, key) {
+
+      let keyboardComponents = this.sceneToRun.getAllComponentType(KeyboardComponent);
+
+      for (let i = 0; i < keyboardComponents.length; i++) {
+        keyboardComponents[i].onKeyType(key);
+      }
+  }
 }

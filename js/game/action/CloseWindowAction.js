@@ -10,7 +10,7 @@ class CloseWindowAction extends EventListener {
 
   end() {
 
-    console.log('hit');
+    // console.log('hit');
 
     let factorio = this.gameOBJ.scene.getFirstComponentOfType(WindowFactoryComponent);
 

@@ -6,20 +6,28 @@ class WindowFocusComponent extends Component {
 
     this.focusedWindow = null;
     this.windowToFocusNextFrame = null;
+    this.desktop = null;
   }
-  update(){
-    if(this.windowToFocusNextFrame != null){
+
+  update() {
+    if (this.windowToFocusNextFrame != null) {
       this.setFocus(this.windowToFocusNextFrame);
       this.windowToFocusNextFrame = null;
     }
   }
+
   setFocus(window) {
 
     let trf = window.getTransform();
 
-    this.liftStack(trf.local.position.z);
-    trf.local.position.z = 0;
+    if (window != this.desktop) {
+
+      this.liftStack(trf.local.position.z);
+      trf.local.position.z = 0;
+      this.focusedWindow = window;
+    }
   }
+
   setFocusNextFrame(window) {
     this.windowToFocusNextFrame = window;
   }
@@ -28,13 +36,17 @@ class WindowFocusComponent extends Component {
 
     let collection = this.gameObject.getOrAddComponentType(WindowCollectionComponent);
 
-    collection.windows.visit(function(w){
+    collection.windows.visit((w) => {
       let trf = w.getTransform();
 
-      if (trf.local.position.z <= stackTop) {
+      if (this.desktop != w) {
 
-        trf.local.position.z += 1;
+        if (trf.local.position.z <= stackTop) {
+
+          trf.local.position.z += 1;
+        }
       }
+
       return true;
     });
   }

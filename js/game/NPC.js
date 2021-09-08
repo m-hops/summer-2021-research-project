@@ -34,7 +34,9 @@ class NPC {
     inventory.qol -= this.qolAbandoned;
     inventory.bank -= this.loss;
 
-    this.status = "abandoned"
+    this.status = "abandoned";
+
+    inventory.onInventoryChange.raise();
 
     return true;
   }
@@ -57,7 +59,9 @@ class NPC {
     inventory.qol += this.qolAbandoned;
     inventory.bank += this.loss;
 
-    this.status = "saved"
+    this.status = "saved";
+
+    inventory.onInventoryChange.raise();
 
     return true;
 

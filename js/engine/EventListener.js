@@ -2,16 +2,16 @@
 
 class EventListener {
 
-  begin(event) {
+  begin(event, param) {
 
   }
 
-  end(event) {
+  end(event, param) {
 
   }
 
-  raise() {
-    this.begin();
-    this.end();
+  raise(event, param) {
+    this.begin(event, param);
+    this.end(event, param);
   }
 }

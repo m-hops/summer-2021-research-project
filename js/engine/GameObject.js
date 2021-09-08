@@ -35,10 +35,12 @@ class GameObject {
 
   visitAllChildComponentOfType(type,func) {
     return this.children.visit(function(go) {
-      let comp = go.getComponentOfType(type);
-      if (comp != null) {
-        if (!func(comp)) {
-          return false;
+      if (go.enabledInHierarchy) {
+        let comp = go.getComponentOfType(type);
+        if (comp != null) {
+          if (!func(comp)) {
+            return false;
+          }
         }
       }
       return true;

@@ -26,12 +26,12 @@ class CallbackAction2 extends EventListener {
     this.onEnd = onEnd;
   }
 
-  begin(event){
-    if(this.onBegin != null) this.onBegin.apply(this.onBeginThis, event);
+  begin(event, param){
+    if(this.onBegin != null) this.onBegin.apply(this.onBeginThis, [event, param]);
   }
 
-  end(event){
-    if(this.onEnd != null) this.onEnd(event);
+  end(event, param){
+    if(this.onEnd != null) this.onEnd([event, param]);
   }
 
 }

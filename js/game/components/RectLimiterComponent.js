@@ -1,7 +1,9 @@
 class RectLimiterComponent extends Component {
 
-  constructor() {
+  constructor(aabb) {
 
     super();
+
+    this.aabb = aabb;
   }
 }
