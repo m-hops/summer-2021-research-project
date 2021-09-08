@@ -291,9 +291,9 @@ function setup() {
   //SET SCENE TO PROPER DESIGNATION WITH TRANSIT BELOW//
   rootStateMachine = new StateMachine();
 
-  gameState.currentScene = "desktop";
+  gameState.currentScene = "loading";
 
-  rootStateMachine.transit(new SceneState(globalRenderer, new DesktopScene()));
+  rootStateMachine.transit(new SceneState(globalRenderer, new LoadingScene()));
 
   noCursor();
 
